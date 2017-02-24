@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/todolist.css">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+<script type="text/javascript" src="/js/todolist.js"></script>
+
+<div ng-app="todolistApp">
+
+
+  <script type="text/ng-template" id="item.html">
+    <div class="item">
+      <table class="table">
+        <tr>
+          <td class="title">
+            <span class="label">Title:</span>
+            <span ng-hide="edit || form">{{ data.title }}</span>
+            <input ng-model="data.title" ng-show="edit || form" type="text" class="form-control input"/>
+          </td>
+          <td class="author">
+            <span class="label" ng-hide="form">Author:</span> {{ data.author }}
+          </td>
+          <td class="date">
+            <span class="label" ng-hide="form">Created at:</span>
+            <span ng-hide="form"> {{ data.createdAt | date:'dd.MM.yyyy HH:mm' }} </span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="description">
+            <span class="label">Description:</span>
+            <span ng-hide="edit || form" > {{ data.description }} </span>
+            <textarea ng-show="edit || form" ng-model="data.description" ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="buttons">
+            <button ng-hide="edit || form" class="btn btn-warning" ng-click="startEdit();">Edit</button>
+            <button ng-hide="edit || form" class="btn btn-danger" ng-click="delete();">Delete</button>
+            <button ng-show="edit && !form" class="btn btn-success" ng-click="saveEdit();">Save</button>
+            <button ng-show="edit && !form" class="btn" ng-click="cancelEdit();">Cancel</button>
+            <button ng-show="form" class="btn btn-success" ng-click="save();">Save</button>
+            <button ng-show="form" class="btn" ng-click="cancel();">Cancel</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </script>
+
+
+
+
+  <div ng-controller="todolistController" class="container">
+    <div ng-hide="named" class="name-panel">
+      <h3>
+        Please, enter your name.
+      </h3>
+      <div>
+        <input ng-model="name" ng-keypress="pressEnter($event);" class="form-control input-lg"/>
+      </div>
+    </div>
+    <div class="form" ng-show="named">
+      Create new item
+      <item items="items" form="true" author="name"></item>
+    </div>
+    <div class="board" ng-show="named">
+      <div>
+        Sort by:
+        <a href="#" ng-click="order='title';reverse=!reverse;">Title</a>
+        <a href="#" ng-click="order='author';reverse=!reverse;">Author</a>
+        <a href="#" ng-click="order='createdAt';reverse=!reverse;">Date</a>
+      </div>
+      <div ng-repeat="item in itemsToArray() | orderBy:order:reverse">
+        <item data="item" items="items"></item>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

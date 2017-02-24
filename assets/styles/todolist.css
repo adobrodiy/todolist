@@ -1,0 +1,54 @@
+body {
+  background-color: #ddefff;
+  font-size: 20px;
+}
+.name-panel {
+  background: #fff;
+  border-radius: 10px;
+  text-align: center;
+  padding: 30px;
+  margin-top: 50px;
+}
+.board {
+  margin-top: 50px;
+}
+.item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.item input {
+  display: inline-block !important;
+  width: 70%;
+}
+.item textarea {
+  width: 100%;
+}
+.table td {
+  border: none !important;
+  border-collapse: separate !important;
+  border-spacing: 10px !important;
+}
+.title {
+  width: 30%
+}
+.author {
+  width: 30%;
+}
+.date {
+  width: 40%;
+}
+.label{
+  font-size: 17px;
+  color: lightgray;
+}
+.buttons {
+  text-align: right;
+}
+.buttons button {
+  width: 100px;
+}
+.form {
+  margin-top: 50px;
+}
